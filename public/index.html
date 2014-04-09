@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <script>
+      var uploadFile = function () {
+        var file = document.getElementById('upload').files[0];
+        if (!file) return;
+        var req = new XMLHttpRequest();
+        req.open("POST", "/upload/" + file.name, true);
+        req.onload = function () {
+          alert('done');
+        };
+        req.onerror = function (err) {
+          alert('error');
+        };
+        req.send(file);
+        return false;
+      }
+    </script>
+    <form onSubmit="return uploadFile()">
+      <input type="file" name="upload" id="upload"><br>
+      <input type="submit" value="Upload">
+    </form>
+  </body>
+</html>
